@@ -1,0 +1,440 @@
+pr:
+  type: select
+  proxies:
+    - 🔄 节点选择
+    - ⚡ 延迟选优
+    - 🔀 故障转移
+    - 🌐 全局直连
+proxy-groups:
+  - name: 🔄 节点选择
+    type: select
+    proxies:
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+    include-all: true
+  - name: ⚡ 延迟选优
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+  - name: 🔀 故障转移
+    type: fallback
+    include-all: true
+  - name: 📺 YouTube
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 🚀 Speedtest
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 🎬 NETFLIX
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 🎵 TikTok
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 🔍 Google
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 🤖 OpenAI
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 💻 Microsoft
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: ☁️ OneDrive
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 📱 Telegram
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 🐦 Twitter
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 💳 PayPal
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 🍎 Apple
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 🌐 全局直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+    include-all: true
+  - name: 🛡️ 全局拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+      - 🔄 节点选择
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 🌐 全局直连
+    include-all: true
+  - name: 🌍 GLOBAL
+    type: select
+    include-all: true
+    proxies:
+      - 🔄 节点选择
+      - ⚡ 延迟选优
+      - 🔀 故障转移
+      - 📺 YouTube
+      - 🚀 Speedtest
+      - 🎬 NETFLIX
+      - 🎵 TikTok
+      - 🔍 Google
+      - 🤖 OpenAI
+      - 💻 Microsoft
+      - ☁️ OneDrive
+      - 📱 Telegram
+      - 🐦 Twitter
+      - 💳 PayPal
+      - 🍎 Apple
+      - 🌐 全局直连
+      - 🛡️ 全局拦截
+      - 🐟 漏网之鱼
+rule-anchor:
+  ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+  domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+rule-providers:
+  private_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs
+  ai:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/category-ai-!cn.mrs
+  youtube_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs
+  google_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs
+  github_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs
+  telegram_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs
+  netflix_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs
+  paypal_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs
+  onedrive_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs
+  microsoft_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs
+  apple_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs
+  speedtest_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs
+  tiktok_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs
+  gfw_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs
+  notion_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/notion.mrs
+  geolocation-!cn:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs
+  cn_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs
+  cn_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs
+  private_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs
+  google_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs
+  telegram_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs
+  netflix_ip:
+    type: http
+    interval: 86400
+    behavior: ipcidr
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs
+rules:
+  - DOMAIN-SUFFIX,linux.do,🌐 全局直连
+  - DOMAIN-SUFFIX,stripe.com,🌐 全局直连
+  - RULE-SET,private_domain,🌐 全局直连
+  - RULE-SET,apple_domain,🍎 Apple
+  - RULE-SET,ai,🤖 OpenAI
+  - RULE-SET,github_domain,🔄 节点选择
+  - RULE-SET,notion_domain,🌐 全局直连
+  - RULE-SET,youtube_domain,📺 YouTube
+  - RULE-SET,google_domain,🔍 Google
+  - RULE-SET,onedrive_domain,☁️ OneDrive
+  - RULE-SET,microsoft_domain,💻 Microsoft
+  - RULE-SET,tiktok_domain,🎵 TikTok
+  - RULE-SET,speedtest_domain,🚀 Speedtest
+  - RULE-SET,telegram_domain,📱 Telegram
+  - RULE-SET,netflix_domain,🎬 NETFLIX
+  - RULE-SET,paypal_domain,💳 PayPal
+  - RULE-SET,gfw_domain,🔄 节点选择
+  - RULE-SET,geolocation-!cn,🔄 节点选择
+  - RULE-SET,cn_domain,🌐 全局直连
+  - RULE-SET,google_ip,🔍 Google,no-resolve
+  - RULE-SET,private_ip,🌐 全局直连,no-resolve
+  - RULE-SET,netflix_ip,🎬 NETFLIX,no-resolve
+  - RULE-SET,telegram_ip,📱 Telegram,no-resolve
+  - RULE-SET,cn_ip,🌐 全局直连
+  - MATCH,🐟 漏网之鱼
+external-controller: 127.0.0.1:9090
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-controller-cors:
+  allow-origins:
+    - https://metacubex.github.io
+    - https://board.zash.run.place
+  allow-private-network: false
+ipv6: false
+mode: rule
+mixed-port: 7890
+socks-port: 0
+port: 0
+redir-port: 0
+tproxy-port: 0
+allow-lan: false
+unified-delay: true
+tcp-concurrent: true
+log-level: info
+find-process-mode: always
+bind-address: "*"
+lan-allowed-ips:
+  - 0.0.0.0/0
+  - ::/0
+lan-disallowed-ips: []
+authentication: []
+skip-auth-prefixes:
+  - 127.0.0.1/32
+tun:
+  enable: true
+  device: Mihomo
+  stack: mixed
+  auto-route: true
+  auto-redirect: false
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+  route-exclude-address: []
+  mtu: 9000
+  strict-route: true
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  force-dns-mapping: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports:
+        - "80"
+        - "443"
+        - 8080-8880
+      override-destination: false
+    TLS:
+      ports:
+        - 443
+  skip-domain:
+    - +.push.apple.com
+  skip-dst-address:
+    - 91.105.192.0/23
+    - 91.108.4.0/22
+    - 91.108.8.0/21
+    - 91.108.16.0/21
+    - 91.108.56.0/22
+    - 95.161.64.0/20
+    - 149.154.160.0/20
+    - 185.76.151.0/24
+    - 2001:67c:4e8::/48
+    - 2001:b28:f23c::/47
+    - 2001:b28:f23f::/48
+    - 2a0a:f280:203::/48
+  force-domain: []
+profile:
+  store-selected: true
+  store-fake-ip: true
+geo-auto-update: true
+geo-update-interval: 24
+geodata-mode: false
+geox-url:
+  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
+  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+  mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb
+  asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*"
+    - +.lan
+    - +.local
+    - time.*.com
+    - ntp.*.com
+    - +.market.xiaomi.com
+    - rule-set:private_domain,cn_domain
+  use-hosts: false
+  use-system-hosts: false
+  default-nameserver:
+    - tls://223.5.5.5
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  direct-nameserver: []
+  nameserver-policy: {}
+  respect-rules: true
+external-ui: ui
