@@ -86,7 +86,7 @@ proxy-groups:
   - name: 漏网之鱼
     <<: *pr
     include-all: true
-    icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Final.png
   - name: GLOBAL
     type: select
     include-all: true
