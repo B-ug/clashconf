@@ -12,17 +12,17 @@ proxy-groups:
       - 延迟选优
       - 故障转移
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Static.png
   - name: 延迟选优
     type: url-test
     include-all: true
     tolerance: 50
     interval: 300
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
   - name: 故障转移
     type: fallback
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Available.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Available.png
   - name: YouTube
     type: select
     proxies:
@@ -31,7 +31,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/YouTube.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/YouTube.png
   - name: Speedtest
     type: select
     proxies:
@@ -40,7 +40,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Speedtest.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Speedtest.png
   - name: NETFLIX
     type: select
     proxies:
@@ -49,7 +49,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Netflix.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Netflix.png
   - name: TikTok
     type: select
     proxies:
@@ -58,7 +58,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/TikTok.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/TikTok.png
   - name: Google
     type: select
     proxies:
@@ -67,7 +67,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Google.png
   - name: OpenAI
     type: select
     proxies:
@@ -76,7 +76,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
   - name: Microsoft
     type: select
     proxies:
@@ -85,7 +85,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Microsoft.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Microsoft.png
   - name: OneDrive
     type: select
     proxies:
@@ -94,7 +94,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/OneDrive.png
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png
   - name: Telegram
     type: select
     proxies:
@@ -103,7 +103,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png
   - name: Twitter
     type: select
     proxies:
@@ -112,7 +112,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Twitter.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Twitter.png
   - name: PayPal
     type: select
     proxies:
@@ -121,7 +121,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Paypal.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Paypal.png
   - name: Apple
     type: select
     proxies:
@@ -130,7 +130,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Apple.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Apple.png
   - name: 全局直连
     type: select
     proxies:
@@ -139,14 +139,14 @@ proxy-groups:
       - 延迟选优
       - 故障转移
     include-all: true
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/China.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/China.png
   - name: 全局拦截
     type: select
     proxies:
       - REJECT
       - DIRECT
       - 节点选择
-    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/Adblock.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Adblock.png
   - name: 漏网之鱼
     type: select
     proxies:
@@ -178,7 +178,7 @@ proxy-groups:
       - 全局直连
       - 全局拦截
       - 漏网之鱼
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Global.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Global.png
 rule-anchor:
   ip:
     type: http
