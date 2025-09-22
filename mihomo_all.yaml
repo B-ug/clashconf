@@ -104,7 +104,7 @@ proxy-groups:
       - 全局直连
     include-all: true
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png
-  - name: Twitter
+  - name: Steam
     type: select
     proxies:
       - 节点选择
@@ -112,7 +112,7 @@ proxy-groups:
       - 故障转移
       - 全局直连
     include-all: true
-    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Twitter.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Steam.png
   - name: PayPal
     type: select
     proxies:
@@ -172,7 +172,7 @@ proxy-groups:
       - Microsoft
       - OneDrive
       - Telegram
-      - Twitter
+      - Steam
       - PayPal
       - Apple
       - 全局直连
@@ -233,6 +233,18 @@ rule-providers:
     behavior: domain
     format: mrs
     url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs
+  steam_domain:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs
+  steam_domain-@cn:
+    type: http
+    interval: 86400
+    behavior: domain
+    format: mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs
   paypal_domain:
     type: http
     interval: 86400
@@ -326,11 +338,13 @@ rule-providers:
 rules:
   - DOMAIN-SUFFIX,linux.do,全局直连
   - DOMAIN-SUFFIX,stripe.com,全局直连
+  - DOMAIN-SUFFIX,qoder.sh,全局直连
   - RULE-SET,private_domain,全局直连
+  - RULE-SET,steam_domain-@cn,全局直连
   - RULE-SET,apple_domain,Apple
   - RULE-SET,ai,OpenAI
   - RULE-SET,github_domain,节点选择
-  - RULE-SET,notion_domain,全局直连
+  - RULE-SET,notion_domain,节点选择
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google_domain,Google
   - RULE-SET,onedrive_domain,OneDrive
@@ -340,6 +354,7 @@ rules:
   - RULE-SET,telegram_domain,Telegram
   - RULE-SET,netflix_domain,NETFLIX
   - RULE-SET,paypal_domain,PayPal
+  - RULE-SET,steam_domain,Steam
   - RULE-SET,gfw_domain,节点选择
   - RULE-SET,geolocation-!cn,节点选择
   - RULE-SET,cn_domain,全局直连
@@ -350,44 +365,54 @@ rules:
   - RULE-SET,cn_ip,全局直连
   - MATCH,漏网之鱼
 external-controller: 127.0.0.1:9090
+external-ui: ui
 external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
 external-controller-cors:
   allow-origins:
     - https://metacubex.github.io
     - https://board.zash.run.place
   allow-private-network: false
+secret: 8s0taFOZUoBy0ZtnuYdW147qurx8Ke70
 ipv6: false
-mode: rule
 mixed-port: 7890
-socks-port: 0
-port: 0
-redir-port: 0
-tproxy-port: 0
 allow-lan: false
 unified-delay: true
 tcp-concurrent: true
 log-level: info
 find-process-mode: always
 bind-address: "*"
-lan-allowed-ips:
-  - 0.0.0.0/0
-  - ::/0
-lan-disallowed-ips: []
-authentication: []
-skip-auth-prefixes:
-  - 127.0.0.1/32
 tun:
   enable: true
-  device: Mihomo
+  device: mihomo
   stack: mixed
-  auto-route: true
-  auto-redirect: false
-  auto-detect-interface: true
   dns-hijack:
     - any:53
-  route-exclude-address: []
-  mtu: 9000
-  strict-route: true
+  mtu: 1500
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*"
+    - +.lan
+    - +.local
+    - time.*.com
+    - ntp.*.com
+    - +.market.xiaomi.com
+    - rule-set:private_domain,cn_domain
+    - stun.services.mozilla.com
+  use-hosts: false
+  use-system-hosts: false
+  default-nameserver:
+    - tls://223.5.5.5
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  proxy-server-nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  respect-rules: true
 sniffer:
   enable: true
   parse-pure-ip: true
@@ -396,9 +421,8 @@ sniffer:
   sniff:
     HTTP:
       ports:
-        - "80"
-        - "443"
-        - 8080-8880
+        - 80
+        - 443
       override-destination: false
     TLS:
       ports:
@@ -418,42 +442,12 @@ sniffer:
     - 2001:b28:f23c::/47
     - 2001:b28:f23f::/48
     - 2a0a:f280:203::/48
-  force-domain: []
 profile:
   store-selected: true
   store-fake-ip: true
-geo-auto-update: true
 geo-update-interval: 24
-geodata-mode: false
 geox-url:
   geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat
   geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
   mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb
   asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
-secret: "123456780"
-dns:
-  enable: true
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "*"
-    - +.lan
-    - +.local
-    - time.*.com
-    - ntp.*.com
-    - +.market.xiaomi.com
-    - rule-set:private_domain,cn_domain
-  use-hosts: false
-  use-system-hosts: false
-  default-nameserver:
-    - tls://223.5.5.5
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  proxy-server-nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  direct-nameserver: []
-  nameserver-policy: {}
-  respect-rules: true

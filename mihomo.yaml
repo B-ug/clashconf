@@ -55,10 +55,10 @@ proxy-groups:
     <<: *pr
     include-all: true
     icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png
-  - name: Twitter
+  - name: Steam
     <<: *pr
     include-all: true
-    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Twitter.png
+    icon: https://fastly.jsdelivr.net/gh/Orz-3/mini@master/Color/Steam.png
   - name: PayPal
     <<: *pr
     include-all: true
@@ -103,7 +103,7 @@ proxy-groups:
       - Microsoft
       - OneDrive
       - Telegram
-      - Twitter
+      - Steam
       - PayPal
       - Apple
       - 全局直连
@@ -137,6 +137,12 @@ rule-providers:
   netflix_domain: 
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"
+  steam_domain: 
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs"
+  steam_domain-@cn: 
+    <<: *domain
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs"
   paypal_domain: 
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"
@@ -186,11 +192,13 @@ rule-providers:
 rules:
   - DOMAIN-SUFFIX,linux.do,全局直连
   - DOMAIN-SUFFIX,stripe.com,全局直连
+  - DOMAIN-SUFFIX,qoder.sh,全局直连
   - RULE-SET,private_domain,全局直连
+  - RULE-SET,steam_domain-@cn,全局直连
   - RULE-SET,apple_domain,Apple
   - RULE-SET,ai,OpenAI
   - RULE-SET,github_domain,节点选择
-  - RULE-SET,notion_domain,全局直连
+  - RULE-SET,notion_domain,节点选择
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google_domain,Google
   - RULE-SET,onedrive_domain,OneDrive
@@ -200,6 +208,7 @@ rules:
   - RULE-SET,telegram_domain,Telegram
   - RULE-SET,netflix_domain,NETFLIX
   - RULE-SET,paypal_domain,PayPal
+  - RULE-SET,steam_domain,Steam
   - RULE-SET,gfw_domain,节点选择
   - RULE-SET,geolocation-!cn,节点选择
   - RULE-SET,cn_domain,全局直连
